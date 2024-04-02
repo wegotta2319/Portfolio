@@ -1,0 +1,985 @@
+{
+  "start_state": "1 facing forward",
+  "states": {
+    "1 facing forward": {
+      "bk_img": "imgs/1_forward.png",
+      "next_state": [
+        {
+          "state_name": "2 forward",
+          "key_input": 38
+        },
+        {
+          "state_name": "1 facing right",
+          "key_input": 39
+        },
+        {
+          "state_name": "1 facing left",
+          "key_input": 37
+        },
+        {
+          "state_name": "1 facing backward",
+          "key_input": 40
+        }
+      ]
+    },
+    "1 facing right": {
+      "bk_img": "imgs/1_facing_right.png",
+      "next_state": [
+        {
+          "state_name": "1 facing backward",
+          "key_input": 39
+        },
+        {
+          "state_name": "1 facing forward",
+          "key_input": 37
+        },
+        {
+          "state_name": "1 facing left",
+          "key_input": 40
+        }
+      ]
+    },
+    "1 facing backward": {
+      "bk_img": "imgs/1_facing_backwards.png",
+      "next_state": [
+        {
+          "state_name": "1 facing left",
+          "key_input": 39
+        },
+        {
+          "state_name": "1 facing right",
+          "key_input": 37
+        },
+        {
+          "state_name": "1 facing forward",
+          "key_input": 40
+        }
+      ]
+    },
+    "1 facing left": {
+      "bk_img": "imgs/1_facing_left.png",
+      "next_state": [
+        {
+          "state_name": "1 facing forward",
+          "key_input": 39
+        },
+        {
+          "state_name": "1 facing backward",
+          "key_input": 37
+        },
+        {
+          "state_name": "1 facing right",
+          "key_input": 40
+        }
+      ]
+    },
+    "2 forward": {
+      "bk_img": "imgs/2_facing_forward.png",
+      "next_state": [
+        {
+          "state_name": "3 forward",
+          "key_input": 38
+        },
+        {
+          "state_name": "2 right",
+          "key_input": 39
+        },
+        {
+          "state_name": "2 left",
+          "key_input": 37
+        },
+        {
+          "state_name": "2 backward",
+          "key_input": 40
+        }
+      ]
+    },
+    "2 backward": {
+      "bk_img": "imgs/2_facing_backwards.png",
+      "next_state": [
+        {
+          "state_name": "1 facing backward",
+          "key_input": 38
+        },
+        {
+          "state_name": "2 left",
+          "key_input": 39
+        },
+        {
+          "state_name": "2 right",
+          "key_input": 37
+        },
+        {
+          "state_name": "2 forward",
+          "key_input": 40
+        }
+      ]
+    },
+    "2 left": {
+      "bk_img": "imgs/2_facing_left.png",
+      "next_state": [
+        {
+          "state_name": "2 forward",
+          "key_input": 39
+        },
+        {
+          "state_name": "2 backward",
+          "key_input": 37
+        },
+        {
+          "state_name": "2 right",
+          "key_input": 40
+        }
+      ]
+    },
+    "2 right": {
+      "bk_img": "imgs/2_facing_right.png",
+      "next_state": [
+        {
+          "state_name": "2 backward",
+          "key_input": 39
+        },
+        {
+          "state_name": "2 forward",
+          "key_input": 37
+        },
+        {
+          "state_name": "2 left",
+          "key_input": 40
+        }
+      ]
+    },
+    "3 forward": {
+      "bk_img": "imgs/3_facing_forward.png",
+      "next_state": [
+        {
+          "state_name": "4 forward",
+          "key_input": 38
+        },
+        {
+          "state_name": "3 right",
+          "key_input": 39
+        },
+        {
+          "state_name": "3 left",
+          "key_input": 37
+        },
+        {
+          "state_name": "3 backward",
+          "key_input": 40
+        }
+      ]
+    },
+    "3 right": {
+      "bk_img": "imgs/3_facing_right.png",
+      "next_state": [
+        {
+          "state_name": "3 backward",
+          "key_input": 39
+        },
+        {
+          "state_name": "3 forward",
+          "key_input": 37
+        },
+        {
+          "state_name": "3 left",
+          "key_input": 40
+        }
+      ]
+    },
+    "3 backward": {
+      "bk_img": "imgs/3_facing_backwards.png",
+      "next_state": [
+        {
+          "state_name": "2 backward",
+          "key_input": 38
+        },
+        {
+          "state_name": "3 left",
+          "key_input": 39
+        },
+        {
+          "state_name": "3 right",
+          "key_input": 37
+        },
+        {
+          "state_name": "3 forward",
+          "key_input": 40
+        }
+      ]
+    },
+    "3 left": {
+      "bk_img": "imgs/3_facing_left.png",
+      "next_state": [
+        {
+          "state_name": "3 forward",
+          "key_input": 39
+        },
+        {
+          "state_name": "3 backward",
+          "key_input": 37
+        },
+        {
+          "state_name": "3 right",
+          "key_input": 40
+        }
+      ]
+    },
+    "4 forward": {
+      "bk_img": "imgs/4_facing_forward.png",
+      "next_state": [
+        {
+          "state_name": "5 forward",
+          "key_input": 38
+        },
+        {
+          "state_name": "4 right",
+          "key_input": 39
+        },
+        {
+          "state_name": "4 left",
+          "key_input": 37
+        },
+        {
+          "state_name": "4 backward",
+          "key_input": 40
+        }
+      ]
+    },
+    "4 right": {
+      "bk_img": "imgs/4_facing_right.png",
+      "next_state": [
+        {
+          "state_name": "4 backward",
+          "key_input": 39
+        },
+        {
+          "state_name": "4 forward",
+          "key_input": 37
+        },
+        {
+          "state_name": "4 left",
+          "key_input": 40
+        }
+      ]
+    },
+    "4 backward": {
+      "bk_img": "imgs/4_facing_backwards.png",
+      "next_state": [
+        {
+          "state_name": "3 backward",
+          "key_input": 38
+        },
+        {
+          "state_name": "4 left",
+          "key_input": 39
+        },
+        {
+          "state_name": "4 right",
+          "key_input": 37
+        },
+        {
+          "state_name": "4 forward",
+          "key_input": 40
+        }
+      ]
+    },
+    "4 left": {
+      "bk_img": "imgs/4_facing_left.png",
+      "next_state": [
+        {
+          "state_name": "4 forward",
+          "key_input": 39
+        },
+        {
+          "state_name": "4 backward",
+          "key_input": 37
+        },
+        {
+          "state_name": "4 right",
+          "key_input": 40
+        }
+      ]
+    },
+    "5 forward": {
+      "bk_img": "imgs/5_facing_forward.png",
+      "next_state": [
+        {
+          "state_name": "7 forward",
+          "key_input": 38
+        },
+        {
+          "state_name": "5 right",
+          "key_input": 39
+        },
+        {
+          "state_name": "5 left",
+          "key_input": 37
+        },
+        {
+          "state_name": "5 backward",
+          "key_input": 40
+        }
+      ]
+    },
+    "5 right": {
+      "bk_img": "imgs/5_facing_right.png",
+      "next_state": [
+        {
+          "state_name": "6-1 forward",
+          "key_input": 38
+        },
+        {
+          "state_name": "5 backward",
+          "key_input": 39
+        },
+        {
+          "state_name": "5 forward",
+          "key_input": 37
+        },
+        {
+          "state_name": "5 left",
+          "key_input": 40
+        }
+      ]
+    },
+    "5 backward": {
+      "bk_img": "imgs/5_facing_backwards.png",
+      "next_state": [
+        {
+          "state_name": "4 backward",
+          "key_input": 38
+        },
+        {
+          "state_name": "5 left",
+          "key_input": 39
+        },
+        {
+          "state_name": "5 right",
+          "key_input": 37
+        },
+        {
+          "state_name": "5 forward",
+          "key_input": 40
+        }
+      ]
+    },
+    "5 left": {
+      "bk_img": "imgs/5_facing_left.png",
+      "next_state": [
+        {
+          "state_name": "5 forward",
+          "key_input": 39
+        },
+        {
+          "state_name": "5 backward",
+          "key_input": 37
+        },
+        {
+          "state_name": "5 right",
+          "key_input": 40
+        }
+      ]
+    },
+    "6-1 forward": {
+      "bk_img": "imgs/6-1_facing_forward.png",
+      "next_state": [
+        {
+          "state_name": "6-2 forward",
+          "key_input": 38
+        },
+        {
+          "state_name": "6-1 right",
+          "key_input": 39
+        },
+        {
+          "state_name": "6-1 left",
+          "key_input": 37
+        },
+        {
+          "state_name": "6-1 backward",
+          "key_input": 40
+        }
+      ]
+    },
+    "6-1 right": {
+      "bk_img": "imgs/6-1_facing_right.png",
+      "next_state": [
+        {
+          "state_name": "6-1 backward",
+          "key_input": 39
+        },
+        {
+          "state_name": "6-1 forward",
+          "key_input": 37
+        },
+        {
+          "state_name": "6-1 left",
+          "key_input": 40
+        }
+      ]
+    },
+    "6-1 backward": {
+      "bk_img": "imgs/6-1_facing_backwards.png",
+      "next_state": [
+        {
+          "state_name": "5 left",
+          "key_input": 38
+        },
+        {
+          "state_name": "6-1 left",
+          "key_input": 39
+        },
+        {
+          "state_name": "6-1 right",
+          "key_input": 37
+        },
+        {
+          "state_name": "6-1 forward",
+          "key_input": 40
+        }
+      ]
+    },
+    "6-1 left": {
+      "bk_img": "imgs/6-1_facing_left.png",
+      "next_state": [
+        {
+          "state_name": "6-1 forward",
+          "key_input": 39
+        },
+        {
+          "state_name": "6-1 backward",
+          "key_input": 37
+        },
+        {
+          "state_name": "6-1 right",
+          "key_input": 40
+        }
+      ]
+    },
+    "6-2 forward": {
+      "bk_img": "imgs/6-2_facing_forward.png",
+      "next_state": [
+        {
+          "state_name": "6-2 right",
+          "key_input": 39
+        },
+        {
+          "state_name": "6-2 left",
+          "key_input": 37
+        },
+        {
+          "state_name": "6-2 backward",
+          "key_input": 40
+        }
+      ]
+    },
+    "6-2 right": {
+      "bk_img": "imgs/6-2_facing_right.png",
+      "next_state": [
+        {
+          "state_name": "6-2 backward",
+          "key_input": 39
+        },
+        {
+          "state_name": "6-2 forward",
+          "key_input": 37
+        },
+        {
+          "state_name": "6-2 left",
+          "key_input": 40
+        }
+      ]
+    },
+    "6-2 backward": {
+      "bk_img": "imgs/6-2_facing_backwards.png",
+      "next_state": [
+        {
+          "state_name": "6-1 backward",
+          "key_input": 38
+        },
+        {
+          "state_name": "6-2 left",
+          "key_input": 39
+        },
+        {
+          "state_name": "6-2 right",
+          "key_input": 37
+        },
+        {
+          "state_name": "6-2 forward",
+          "key_input": 40
+        }
+      ]
+    },
+    "6-2 left": {
+      "bk_img": "imgs/6-2_facing_left.png",
+      "next_state": [
+        {
+          "state_name": "6-2 forward",
+          "key_input": 39
+        },
+        {
+          "state_name": "6-2 backward",
+          "key_input": 37
+        },
+        {
+          "state_name": "6-2 right",
+          "key_input": 40
+        }
+      ]
+    },
+    "7 forward": {
+      "bk_img": "imgs/7_facing_forward.png",
+      "next_state": [
+        {
+          "state_name": "8 forward",
+          "key_input": 38
+        },
+        {
+          "state_name": "7 right",
+          "key_input": 39
+        },
+        {
+          "state_name": "7 left",
+          "key_input": 37
+        },
+        {
+          "state_name": "7 backward",
+          "key_input": 40
+        }
+      ]
+    },
+    "7 right": {
+      "bk_img": "imgs/7_facing_right.png",
+      "next_state": [
+        {
+          "state_name": "7 backward",
+          "key_input": 39
+        },
+        {
+          "state_name": "7 forward",
+          "key_input": 37
+        },
+        {
+          "state_name": "7 left",
+          "key_input": 40
+        }
+      ]
+    },
+    "7 backward": {
+      "bk_img": "imgs/7_facing_backwards.png",
+      "next_state": [
+        {
+          "state_name": "5 backward",
+          "key_input": 38
+        },
+        {
+          "state_name": "7 left",
+          "key_input": 39
+        },
+        {
+          "state_name": "7 right",
+          "key_input": 37
+        },
+        {
+          "state_name": "7 forward",
+          "key_input": 40
+        }
+      ]
+    },
+    "7 left": {
+      "bk_img": "imgs/7_facing_left.png",
+      "next_state": [
+        {
+          "state_name": "7 forward",
+          "key_input": 39
+        },
+        {
+          "state_name": "7 backward",
+          "key_input": 37
+        },
+        {
+          "state_name": "7 right",
+          "key_input": 40
+        }
+      ]
+    },
+    "8 forward": {
+      "bk_img": "imgs/8_facing_forward.png",
+      "next_state": [
+        {
+          "state_name": "9 forward",
+          "key_input": 38
+        },
+        {
+          "state_name": "8 right",
+          "key_input": 39
+        },
+        {
+          "state_name": "8 left",
+          "key_input": 37
+        },
+        {
+          "state_name": "8 backward",
+          "key_input": 40
+        }
+      ]
+    },
+    "8 right": {
+      "bk_img": "imgs/8_facing_right.png",
+      "next_state": [
+        {
+          "state_name": "8 backward",
+          "key_input": 39
+        },
+        {
+          "state_name": "8 forward",
+          "key_input": 37
+        },
+        {
+          "state_name": "8 left",
+          "key_input": 40
+        }
+      ]
+    },
+    "8 backward": {
+      "bk_img": "imgs/8_facing_backwards.png",
+      "next_state": [
+        {
+          "state_name": "7 backward",
+          "key_input": 38
+        },
+        {
+          "state_name": "8 left",
+          "key_input": 39
+        },
+        {
+          "state_name": "8 right",
+          "key_input": 37
+        },
+        {
+          "state_name": "8 forward",
+          "key_input": 40
+        }
+      ]
+    },
+    "8 left": {
+      "bk_img": "imgs/8_facing_left.png",
+      "next_state": [
+        {
+          "state_name": "8-1 forward",
+          "key_input": 38
+        },
+        {
+          "state_name": "7 forward",
+          "key_input": 39
+        },
+        {
+          "state_name": "7 backward",
+          "key_input": 37
+        },
+        {
+          "state_name": "7 right",
+          "key_input": 40
+        }
+      ]
+    },
+    "8-1 forward": {
+      "bk_img": "imgs/8-1_facing_forward.png",
+      "next_state": [
+        {
+          "state_name": "8-2 forward",
+          "key_input": 38
+        },
+        {
+          "state_name": "8-1 right",
+          "key_input": 39
+        },
+        {
+          "state_name": "8-1 left",
+          "key_input": 37
+        },
+        {
+          "state_name": "8-1 backward",
+          "key_input": 40
+        }
+      ]
+    },
+    "8-1 right": {
+      "bk_img": "imgs/8-1_facing_right.png",
+      "next_state": [
+        {
+          "state_name": "8-1 backward",
+          "key_input": 39
+        },
+        {
+          "state_name": "8-1 forward",
+          "key_input": 37
+        },
+        {
+          "state_name": "8-1 left",
+          "key_input": 40
+        }
+      ]
+    },
+    "8-1 backward": {
+      "bk_img": "imgs/8-1_facing_backwards.png",
+      "next_state": [
+        {
+          "state_name": "8 left",
+          "key_input": 38
+        },
+        {
+          "state_name": "8-1 left",
+          "key_input": 39
+        },
+        {
+          "state_name": "8-1 right",
+          "key_input": 37
+        },
+        {
+          "state_name": "8-1 forward",
+          "key_input": 40
+        }
+      ]
+    },
+    "8-1 left": {
+      "bk_img": "imgs/8-1_facing_left.png",
+      "next_state": [
+        {
+          "state_name": "8-1 forward",
+          "key_input": 39
+        },
+        {
+          "state_name": "8-1 backward",
+          "key_input": 37
+        },
+        {
+          "state_name": "8-1 right",
+          "key_input": 40
+        }
+      ]
+    },
+    "8-2 forward": {
+      "bk_img": "imgs/8-2_facing_forward.png",
+      "next_state": [
+        {
+          "state_name": "8-2 right",
+          "key_input": 39
+        },
+        {
+          "state_name": "8-2 left",
+          "key_input": 37
+        },
+        {
+          "state_name": "8-2 backward",
+          "key_input": 40
+        }
+      ]
+    },
+    "8-2 right": {
+      "bk_img": "imgs/8-2_facing_right.png",
+      "next_state": [
+        {
+          "state_name": "8-2 backward",
+          "key_input": 39
+        },
+        {
+          "state_name": "8-2 forward",
+          "key_input": 37
+        },
+        {
+          "state_name": "8-2 left",
+          "key_input": 40
+        }
+      ]
+    },
+    "8-2 backward": {
+      "bk_img": "imgs/8-2_facing_backwards.png",
+      "next_state": [
+        {
+          "state_name": "8-1 backward",
+          "key_input": 38
+        },
+        {
+          "state_name": "8-2 left",
+          "key_input": 39
+        },
+        {
+          "state_name": "8-2 right",
+          "key_input": 37
+        },
+        {
+          "state_name": "8-2 forward",
+          "key_input": 40
+        }
+      ]
+    },
+    "8-2 left": {
+      "bk_img": "imgs/8-2_facing_left.png",
+      "next_state": [
+        {
+          "state_name": "8-2 forward",
+          "key_input": 39
+        },
+        {
+          "state_name": "8-2 backward",
+          "key_input": 37
+        },
+        {
+          "state_name": "8-2 right",
+          "key_input": 40
+        }
+      ]
+    },
+    "9 forward": {
+      "bk_img": "imgs/9_facing_forward.png",
+      "next_state": [
+        {
+          "state_name": "10 forward",
+          "key_input": 38
+        },
+        {
+          "state_name": "9 right",
+          "key_input": 39
+        },
+        {
+          "state_name": "9 left",
+          "key_input": 37
+        },
+        {
+          "state_name": "9 backward",
+          "key_input": 40
+        }
+      ]
+    },
+    "9 right": {
+      "bk_img": "imgs/9_facing_right.png",
+      "next_state": [
+        {
+          "state_name": "9 backward",
+          "key_input": 39
+        },
+        {
+          "state_name": "9 forward",
+          "key_input": 37
+        },
+        {
+          "state_name": "9 left",
+          "key_input": 40
+        }
+      ]
+    },
+    "9 backward": {
+      "bk_img": "imgs/9_facing_backwards.png",
+      "next_state": [
+        {
+          "state_name": "8 backward",
+          "key_input": 38
+        },
+        {
+          "state_name": "9 left",
+          "key_input": 39
+        },
+        {
+          "state_name": "9 right",
+          "key_input": 37
+        },
+        {
+          "state_name": "9 forward",
+          "key_input": 40
+        }
+      ]
+    },
+    "9 left": {
+      "bk_img": "imgs/9_facing_left.png",
+      "next_state": [
+        {
+          "state_name": "9 forward",
+          "key_input": 39
+        },
+        {
+          "state_name": "9 backward",
+          "key_input": 37
+        },
+        {
+          "state_name": "9 right",
+          "key_input": 40
+        }
+      ]
+    },
+    "10 forward": {
+      "bk_img": "imgs/10_forward.png",
+      "next_state": [
+        {
+          "state_name": "10 right",
+          "key_input": 39
+        },
+        {
+          "state_name": "10 left",
+          "key_input": 37
+        },
+        {
+          "state_name": "10 backward",
+          "key_input": 40
+        }
+      ]
+    },
+    "10 backward": {
+      "bk_img": "imgs/10_backwards.png",
+      "next_state": [
+        {
+          "state_name": "9 backward",
+          "key_input": 38
+        },
+        {
+          "state_name": "10 left",
+          "key_input": 39
+        },
+        {
+          "state_name": "10 right",
+          "key_input": 37
+        },
+        {
+          "state_name": "10 forward",
+          "key_input": 40
+        }
+      ]
+    },
+    "10 left": {
+      "bk_img": "imgs/10_left.png",
+      "next_state": [
+        {
+          "state_name": "10 forward",
+          "key_input": 39
+        },
+        {
+          "state_name": "10 backward",
+          "key_input": 37
+        },
+        {
+          "state_name": "10 right",
+          "key_input": 40
+        }
+      ]
+    },
+    "10 right": {
+      "bk_img": "imgs/10_right.png",
+      "next_state": [
+        {
+          "state_name": "10 backward",
+          "key_input": 39
+        },
+        {
+          "state_name": "10 forward",
+          "key_input": 37
+        },
+        {
+          "state_name": "10 left",
+          "key_input": 40
+        }
+      ]
+    }
+  }
+}
