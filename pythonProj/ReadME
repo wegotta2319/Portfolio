@@ -1,0 +1,14 @@
+This files contains 2 .py files names server.py and client.py
+
+About Each File:
+
+server.py:
+creates a simple socket server in python 3 that is able to communicate with the client where transaction between 2 client in BTC.
+The server.py creates a socketserver where it captures data based off what user is logged in.
+It keeps track of the users balance and what transactions have taken place.
+
+client.py:
+This handles all the client side of the transactions where after they log in they connect to the server. After they are authenticated and log into the
+server they are able to chose if they want to see their transaction history if there is any. Other options include exiting the server or making a transaction.
+For the exiting does not turn the server off but it releases the terminal so another user can login and see if they have an new transactions or make a transaction.
+For the transactions the client is able to chose who they are going to send BTC to and how much they are going to send.
