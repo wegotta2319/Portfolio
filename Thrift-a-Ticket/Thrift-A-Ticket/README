@@ -1,0 +1,17 @@
+Thrift-a-Ticket:
+
+Overview:
+It is a project I worked on with a group of 3 other people.
+It is a Java based software that allows the user to find tickets for events with ease.
+Some features include bookmarking tickets for later reference and it even hyper links you ticketmaster if the user wants to purchase the ticket.
+
+Front End:
+Thrift-a-Ticket uses HTML, Javascript, and Css for the GUI interface.
+Also uses vue.js as our framework accompanies by Springboot.
+
+Back end:
+As perviously states it for back end development Thrift-a-Ticket uses Java for the back end.
+Java is used to pull data from the free API, dicoveryAPI which is partnered with ticketmaster.
+It provided us with the name of the event and the artist along with the cheapest ticket prices for that event.
+Since we also allowed user to create an account we used a local data base with mySQL in order to store the users data for later use.
+We encrypted their passwords so that in the off chance we have a data breach their data would be safe.
