@@ -1,5 +1,6 @@
 import pandas as pd
 import tkinter as tk
+import numpy as np
 from tkinter import ttk
 from tkinterdnd2 import TkinterDnD, DND_FILES
 from datetime import datetime, timedelta
@@ -13,6 +14,9 @@ def validate_dates_and_cost():
         min_cost_input = entry_min_cost.get()
         max_cost_input = entry_max_cost.get()
 
+        min_cost_input = round(float(min_cost_input), 3)
+        max_cost_input = round(float(max_cost_input), 3)
+         
         if not file_path.get():
             raise ValueError("No file selected. Please drag and drop a file.")
 
@@ -23,9 +27,10 @@ def validate_dates_and_cost():
         end_date = datetime.strptime(end_date_input, "%m/%d/%Y").date() if end_date_input else None
 
         # Default cost range if fields are blank
-        min_cost = float(min_cost_input) if min_cost_input else 0
-        max_cost = float(max_cost_input) if max_cost_input else float('inf')
+        min_cost = round(float(min_cost_input), 2) if min_cost_input else 0
+        max_cost = round(float(max_cost_input), 2) if max_cost_input else float('inf')
 
+        # Initialize all variables
         num_of_wrong_start_date = 0
         num_of_correct_start_date = 0
         num_of_wrong_end_date = 0
@@ -43,7 +48,7 @@ def validate_dates_and_cost():
         df['End date'] = pd.to_datetime(df['End date'], format='%m/%d/%Y')
 
         # Define thresholds (e.g., 30 days difference for "way after" or "way before")
-        threshold = timedelta(days=30)
+        threshold = timedelta(days=7)
 
         for i, row in df.iterrows():
             row_start_date = row['Start date'].date()
@@ -130,12 +135,25 @@ def on_file_drop(event):
     file_path.set(event.data)
     label_file_path.config(text=f"Selected File: {event.data}")
 
+def clear_fields():
+    #clears all fields and the file path
+    entry_start_date.delete(0,tk.END)
+    entry_end_date.delete(0,tk.END)
+    entry_sheet_name.delete(0,tk.END)
+    file_path.set("")
+    label_file_path.config(text = "Drag and Drop a file here")
+    text_output.delete(1.0,tk.END)
+
+def quit_program():
+    #Quits the program
+    window.quit()
+
 
 # GUI setup
 window = TkinterDnD.Tk()
 window.title("Amilia Date and Cost Checker")
 
-# Set blue-and-white theme
+# Set theme colors
 window.configure(bg="white")
 
 # Configure grid layout
@@ -186,23 +204,19 @@ label_max_cost.grid(row=5, column=0, sticky="w", pady=5)
 entry_max_cost = tk.Entry(frame_inputs, width=30, fg="black")
 entry_max_cost.grid(row=5, column=1, sticky="ew", pady=5)
 
-# Submit button
-button_submit = tk.Button(frame_inputs, text="Validate", command=validate_dates_and_cost, bg="blue", fg="white", activebackground="lightblue")
-button_submit.grid(row=6, column=0, columnspan=2, pady=10)
+# Buttons
+button_validate = tk.Button(frame_inputs, text="Validate", bg="lightgreen", fg="black", command=validate_dates_and_cost, height=2, width=2)
+button_validate.grid(row=6, column=0, sticky="ew", pady=5, padx=5)
 
-# Text box for displaying output
-text_output = tk.Text(frame_output, wrap=tk.WORD, bg="white", fg="black")
-text_output.grid(row=0, column=0, sticky="nsew")
+button_clear = tk.Button(frame_inputs, text="Clear", bg="lightcoral", fg="black", command=clear_fields, height=2, width=2)
+button_clear.grid(row=6, column=1, sticky="ew", pady=5, padx=5)
 
-# Configure scrolling
-scrollbar = ttk.Scrollbar(frame_output, command=text_output.yview)
-scrollbar.grid(row=0, column=1, sticky="ns")
-text_output['yscrollcommand'] = scrollbar.set
+button_quit = tk.Button(frame_inputs, text="Quit", bg="salmon", fg="black", command=quit_program, height=2, width=5)
+button_quit.grid(row=6, column=2, columnspan=2, sticky="ew", pady=5, padx=5)
 
-# Configure frame resizing
-frame_inputs.columnconfigure(1, weight=1)
-frame_output.rowconfigure(0, weight=1)
-frame_output.columnconfigure(0, weight=1)
+# Output Textbox
+text_output = tk.Text(frame_output, wrap="word", height=15, width=40)
+text_output.grid(row=0, column=0, padx=10, pady=10)
 
-# Run the GUI loop
+# Start the Tkinter loop
 window.mainloop()
