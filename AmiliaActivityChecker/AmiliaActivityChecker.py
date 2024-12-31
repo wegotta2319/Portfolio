@@ -1,7 +1,7 @@
 import pandas as pd
 import tkinter as tk
 import numpy as np
-from tkinter import ttk
+from tkinter import ttk, filedialog
 from tkinterdnd2 import TkinterDnD, DND_FILES
 from datetime import datetime, timedelta
 
@@ -14,8 +14,17 @@ def validate_dates_and_cost():
         min_cost_input = entry_min_cost.get()
         max_cost_input = entry_max_cost.get()
 
-        min_cost_input = round(float(min_cost_input), 3)
-        max_cost_input = round(float(max_cost_input), 3)
+        # Validate and process the min and max cost inputs
+        try:
+            min_cost = float(min_cost_input) if min_cost_input else 0
+            max_cost = float(max_cost_input) if max_cost_input else float('inf')
+            
+            min_cost = round(min_cost, 3)
+            max_cost = round(max_cost, 3)
+        except ValueError:
+            text_output.delete(1.0, tk.END)
+            text_output.insert(tk.END, "Error: Please enter valid numeric values for minimum and maximum costs.")
+            return
          
         if not file_path.get():
             raise ValueError("No file selected. Please drag and drop a file.")
@@ -25,10 +34,6 @@ def validate_dates_and_cost():
         # Default start and end dates if fields are blank
         start_date = datetime.strptime(start_date_input, "%m/%d/%Y").date() if start_date_input else None
         end_date = datetime.strptime(end_date_input, "%m/%d/%Y").date() if end_date_input else None
-
-        # Default cost range if fields are blank
-        min_cost = round(float(min_cost_input), 2) if min_cost_input else 0
-        max_cost = round(float(max_cost_input), 2) if max_cost_input else float('inf')
 
         # Initialize all variables
         num_of_wrong_start_date = 0
@@ -101,17 +106,20 @@ def validate_dates_and_cost():
                 num_of_correct_end_date += 1
 
             # Validate cost
-            if row_cost < min_cost or row_cost > max_cost:
-                results_text += (
-                    f"{df.loc[i, 'Activity']} has an invalid cost (Cost: {row_cost}). "
-                    f"Expected cost between {min_cost} and {max_cost}.\n"
-                )
-                num_of_invalid_cost += 1
+            if min_cost and max_cost:
+                if row_cost < min_cost or row_cost > max_cost:
+                    results_text += (
+                        f"{df.loc[i, 'Activity']} has an invalid cost (Cost: {row_cost}). "
+                        f"Expected cost between {min_cost} and {max_cost}.\n"
+                    )
+                    num_of_invalid_cost += 1
+                else:
+                    num_of_valid_cost += 1
             else:
-                num_of_valid_cost += 1
-
+                results_text += (f"No costs given to validate.")
+        # Prints the output at the bottom
         results_text += (
-            f"\nSummary:\n"
+            f"\n\nSummary:\n"
             f"Number of valid start dates: {num_of_correct_start_date}\n"
             f"Number of invalid start dates: {num_of_wrong_start_date}\n"
             f"Number of start dates way after the desired start date: {num_of_way_after_start_date}\n"
@@ -135,6 +143,14 @@ def on_file_drop(event):
     file_path.set(event.data)
     label_file_path.config(text=f"Selected File: {event.data}")
 
+def upload_file():
+    file_path = filedialog.askopenfilename(
+        title="Select a file",
+        filetypes=(("Excel Files", ".*xlsx;*.xls"), ("All Files", "*.*"))
+    )
+    if file_path:
+        label_file_path.config(text=file_path)
+
 def clear_fields():
     #clears all fields and the file path
     entry_start_date.delete(0,tk.END)
@@ -143,6 +159,8 @@ def clear_fields():
     file_path.set("")
     label_file_path.config(text = "Drag and Drop a file here")
     text_output.delete(1.0,tk.END)
+    entry_min_cost.delete(0,tk.END)
+    entry_max_cost.delete(0,tk.END)
 
 def quit_program():
     #Quits the program
@@ -153,70 +171,82 @@ def quit_program():
 window = TkinterDnD.Tk()
 window.title("Amilia Date and Cost Checker")
 
-# Set theme colors
-window.configure(bg="white")
+# Set ttk theme
+style = ttk.Style()
+style.theme_use("classic")  # Options: "clam", "alt", "default", "classic", etc.
 
-# Configure grid layout
-window.rowconfigure(0, weight=1)
-window.rowconfigure(1, weight=1)
-window.columnconfigure(0, weight=1)
+# Configure Style
+style.configure("TButton", font=("Arial", 12))  # Default style for all buttons
+style.configure("TButton.validate.TButton", background="lightgreen", font=("Arial", 12, "bold"))
+style.configure("TButton.clear.TButton", background="amber", foreground="darkamber", font=("Arial", 12, "bold"))
+style.configure("TButton.quit.TButton", background="red", foreground="white", font=("Arial", 12, "bold"))
+
+
+# Configure for window resizing (set all rows and columns to be resizable)
+window.grid_rowconfigure(0, weight=1)  # Row 0 (input fields frame)
+window.grid_rowconfigure(1, weight=1)  # Row 1 (output frame)
+window.grid_columnconfigure(0, weight=1)  # Column 0 (main column)
 
 # Frame for input fields
-frame_inputs = tk.Frame(window, bg="white")
-frame_inputs.grid(row=0, column=0, sticky="nsew", padx=10, pady=10)
+frame_inputs = ttk.Frame(window, padding=10)
+frame_inputs.grid(row=0, column=0, sticky="nsew", padx=10, pady=10, )
 
 # Frame for output
-frame_output = tk.Frame(window, bg="white")
+frame_output = ttk.Frame(window, padding=10)
 frame_output.grid(row=1, column=0, sticky="nsew", padx=10, pady=10)
 
 # File path label
 file_path = tk.StringVar()
-label_file_path = tk.Label(frame_inputs, text="Drag and drop a file here", bg="lightblue", fg="black", anchor="w", relief="solid")
+label_file_path = ttk.Label(frame_inputs, text="Drag and drop a file here", relief="solid", font=("Arial", 14))
 label_file_path.grid(row=0, column=0, columnspan=2, sticky="ew", pady=5, ipadx=10, ipady=10)
 
-# Enable drag-and-drop
 label_file_path.drop_target_register(DND_FILES)
 label_file_path.dnd_bind('<<Drop>>', on_file_drop)
 
 # Input labels and entry fields
-label_start_date = tk.Label(frame_inputs, text="Start Date (MM/DD/YYYY):", bg="white", fg="blue")
-label_start_date.grid(row=1, column=0, sticky="w", pady=5)
-entry_start_date = tk.Entry(frame_inputs, width=30, fg="black")
+ttk.Label(frame_inputs, text="Start Date (MM/DD/YYYY):").grid(row=1, column=0, sticky="w", pady=5)
+entry_start_date = ttk.Entry(frame_inputs, width=30)
 entry_start_date.grid(row=1, column=1, sticky="ew", pady=5)
 
-label_end_date = tk.Label(frame_inputs, text="End Date (MM/DD/YYYY):", bg="white", fg="blue")
-label_end_date.grid(row=2, column=0, sticky="w", pady=5)
-entry_end_date = tk.Entry(frame_inputs, width=30, fg="black")
+ttk.Label(frame_inputs, text="End Date (MM/DD/YYYY):").grid(row=2, column=0, sticky="w", pady=5)
+entry_end_date = ttk.Entry(frame_inputs, width=30)
 entry_end_date.grid(row=2, column=1, sticky="ew", pady=5)
 
-label_sheet_name = tk.Label(frame_inputs, text="Sheet Name (Required):", bg="white", fg="blue")
-label_sheet_name.grid(row=3, column=0, sticky="w", pady=5)
-entry_sheet_name = tk.Entry(frame_inputs, width=30, fg="black")
+ttk.Label(frame_inputs, text="Sheet Name (Required):").grid(row=3, column=0, sticky="w", pady=5)
+entry_sheet_name = ttk.Entry(frame_inputs, width=30)
 entry_sheet_name.grid(row=3, column=1, sticky="ew", pady=5)
 
-label_min_cost = tk.Label(frame_inputs, text="Minimum Cost:", bg="white", fg="blue")
-label_min_cost.grid(row=4, column=0, sticky="w", pady=5)
-entry_min_cost = tk.Entry(frame_inputs, width=30, fg="black")
+ttk.Label(frame_inputs, text="Minimum Cost:").grid(row=4, column=0, sticky="w", pady=5)
+entry_min_cost = ttk.Entry(frame_inputs, width=30)
 entry_min_cost.grid(row=4, column=1, sticky="ew", pady=5)
 
-label_max_cost = tk.Label(frame_inputs, text="Maximum Cost:", bg="white", fg="blue")
-label_max_cost.grid(row=5, column=0, sticky="w", pady=5)
-entry_max_cost = tk.Entry(frame_inputs, width=30, fg="black")
+ttk.Label(frame_inputs, text="Maximum Cost:").grid(row=5, column=0, sticky="w", pady=5)
+entry_max_cost = ttk.Entry(frame_inputs, width=30)
 entry_max_cost.grid(row=5, column=1, sticky="ew", pady=5)
 
-# Buttons
-button_validate = tk.Button(frame_inputs, text="Validate", bg="lightgreen", fg="black", command=validate_dates_and_cost, height=2, width=2)
+# Validate Button
+button_validate = ttk.Button(frame_inputs, text="Validate", command=validate_dates_and_cost, style="TButton.validate.TButton")
 button_validate.grid(row=6, column=0, sticky="ew", pady=5, padx=5)
 
-button_clear = tk.Button(frame_inputs, text="Clear", bg="lightcoral", fg="black", command=clear_fields, height=2, width=2)
+# Clear Button
+button_clear = ttk.Button(frame_inputs, text="Clear", command=clear_fields, style="TButton.clean.TButton")
 button_clear.grid(row=6, column=1, sticky="ew", pady=5, padx=5)
 
-button_quit = tk.Button(frame_inputs, text="Quit", bg="salmon", fg="black", command=quit_program, height=2, width=5)
-button_quit.grid(row=6, column=2, columnspan=2, sticky="ew", pady=5, padx=5)
+# Upload File Button
+button_upload = ttk.Button(frame_inputs, text="Upload File", command=upload_file)
+button_upload.grid(row=6, column=2 , sticky="ew", pady=5, padx=5)
+
+# Quit Button
+button_quit = ttk.Button(frame_inputs, text="Quit", command=quit_program, style="TButton.quit.TButton")
+button_quit.grid(row=7, column=0, columnspan=2, sticky="ew", pady=5, padx=5)
 
 # Output Textbox
-text_output = tk.Text(frame_output, wrap="word", height=15, width=40)
-text_output.grid(row=0, column=0, padx=10, pady=10)
+text_output = tk.Text(frame_output, wrap="word", height=15, width=40, font=("Ariel", 12), bd=2, relief="solid")
+text_output.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
+
+# Configure the output frame to expand with window size
+frame_output.grid_rowconfigure(0, weight=1)
+frame_output.grid_columnconfigure(0, weight=1)
 
 # Start the Tkinter loop
 window.mainloop()
